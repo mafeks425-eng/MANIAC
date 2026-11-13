@@ -1,0 +1,42 @@
+name: Build mod
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 8
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 8
+
+      - name: Download Forge MDK 1.16.5
+        run: |
+          curl -fL -o mdk.zip https://maven.minecraftforge.net/net/minecraftforge/forge/1.16.5-36.2.39/forge-1.16.5-36.2.39-mdk.zip
+          mkdir mdk
+          unzip -q mdk.zip -d mdk
+
+      - name: Insert mod sources
+        run: |
+          rm -rf mdk/src
+          cp -r src mdk/src
+          sed -i "s/examplemod/dbdgen/g; s/archivesBaseName = 'modid'/archivesBaseName = 'dbdgen'/" mdk/build.gradle
+
+      - name: Build
+        working-directory: mdk
+        run: |
+          chmod +x gradlew
+          ./gradlew build --no-daemon
+
+      - name: Upload jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbdgen-jar
+          path: mdk/build/libs/*.jar
