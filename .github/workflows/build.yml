@@ -1,27 +1,32 @@
-name: Build Maniac Hunt
+name: Build mod
+
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
-permissions:
-  contents: read
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:   # позволяет запустить сборку кнопкой вручную
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 8
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
-      - uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.8'
-      - name: Build Forge mod
-        run: gradle build --no-daemon
-      - name: Upload JAR
+          java-version: 8
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Build
+        run: ./gradlew build
+
+      - name: Upload jar
         uses: actions/upload-artifact@v4
         with:
-          name: ManiacHunt-Forge-1.20.1
+          name: dbdgen-jar
           path: build/libs/*.jar
-          if-no-files-found: error
