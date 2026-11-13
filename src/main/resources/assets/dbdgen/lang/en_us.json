@@ -1,0 +1,10 @@
+{
+  "block.dbdgen.generator": "Generator",
+  "item.dbdgen.wrench": "Wrench",
+  "item.dbdgen.fuel_can": "Fuel Can",
+  "message.dbdgen.repair": "Repair: %s%%",
+  "message.dbdgen.repaired": "Generator repaired!",
+  "message.dbdgen.fueled": "Fueled: %s%%",
+  "message.dbdgen.full": "Tank is full",
+  "message.dbdgen.status": "Generator is running. Fuel: %s%%"
+}

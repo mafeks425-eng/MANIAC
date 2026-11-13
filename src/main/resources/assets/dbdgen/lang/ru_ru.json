@@ -1,0 +1,10 @@
+{
+  "block.dbdgen.generator": "Генератор",
+  "item.dbdgen.wrench": "Гаечный ключ",
+  "item.dbdgen.fuel_can": "Канистра с топливом",
+  "message.dbdgen.repair": "Ремонт: %s%%",
+  "message.dbdgen.repaired": "Генератор починен!",
+  "message.dbdgen.fueled": "Заправлено: %s%%",
+  "message.dbdgen.full": "Бак полон",
+  "message.dbdgen.status": "Генератор работает. Топливо: %s%%"
+}
