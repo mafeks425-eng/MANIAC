@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "lit=false,repaired=false": { "model": "dbdgen:block/generator_broken" },
-    "lit=true,repaired=false":  { "model": "dbdgen:block/generator_broken" },
-    "lit=false,repaired=true":  { "model": "dbdgen:block/generator_idle" },
-    "lit=true,repaired=true":   { "model": "dbdgen:block/generator_on" }
-  }
-}
